@@ -1,0 +1,13 @@
+body{
+  margin: 1rem;
+  background-color: maroon;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.mainClass{
+  width: 100%;
+  /* background-color: green; */
+  display: block;
+  /* padding: 1rem; */
+}
+

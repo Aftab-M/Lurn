@@ -1,0 +1,45 @@
+.mainTopVen{
+    /* background-color: green; */
+    padding: .5rem;
+    margin: 1rem;
+    
+}
+
+.venList{
+    padding-top: 1rem;
+    /* background-color: red; */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.oneVen{
+    margin: .5rem;
+    padding: 1rem;
+    background-color: rgb(160, 153, 153);
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.oneVen:hover{
+    background-color: white;
+}
+
+.addVen{
+    background-color: white;
+    font-size: 1rem;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.addVen:hover{
+    background-color: transparent;
+    border: 1px solid black;
+    color: white;
+}
+
+
+

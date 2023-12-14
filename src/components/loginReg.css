@@ -1,0 +1,45 @@
+
+.regMain{
+    /* background-color: grey; */
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputs{
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: salmon;
+    display: flex;
+    border-radius: 10px;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btn{
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-top: .6rem;
+    background-color: black;
+    /* border: 1px solid white; */
+    border-radius: 10px;
+    color: white;
+}
+
+.btn:hover{
+    background-color: white;
+    padding: .8rem;
+    color: black;
+    transition: 0.2s ease;
+    border: 1px solid black;
+}
+
+
+.btn:active{
+    padding: 0.5rem;
+}

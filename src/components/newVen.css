@@ -1,0 +1,46 @@
+.newVenMain{}
+
+
+
+input{
+    padding: 1rem;
+    margin: 1rem;
+}
+
+
+.venList{
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+}
+.oneVen{
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+}
+
+
+.image{
+    /* height: 5rem;
+    width: 5rem; */
+}
+
+.no-items{
+    /* margin-top: 2rem; */
+    /* background-color: white; */
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+
+
+button:hover{
+    background-color: white;
+}

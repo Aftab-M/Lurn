@@ -1,0 +1,56 @@
+.header{
+    color: white;
+    border: 2px solid black;
+    /* box-shadow:  0px 0px 100px white; */
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: .7rem;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    cursor: default;
+}
+
+
+.body{
+    /* border: 2px solid black; */
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.ventures{
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.venture{
+    margin: .3rem;
+    font-size: 1.5rem;
+    background-color: green;
+    padding: .7rem;
+    border-radius: 6px;
+    width: 15rem;
+    cursor: pointer;
+}
+.venture:hover{
+    transition: 0.4s ease;
+    color: white;
+    /* border: 1px black solid; */
+    /* box-shadow: 1px 1px 10px white; */
+    /* box-shadow: rgb(103, 119, 136) 0px 8px 30px -10px; */
+}
+
+.venProg{
+    font-size: 1rem;
+    padding-top: 1rem;
+}
+
+@media screen and (max-width:600px) {
+    .ventures{
+        align-items: center;
+        justify-content: center;
+    }
+    .venture{
+        text-align: center;
+    }
+}

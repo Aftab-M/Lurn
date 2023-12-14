@@ -1,0 +1,9 @@
+.addNewVen{
+    /* background-color: white; */
+    padding: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
