@@ -5,7 +5,7 @@ import Header from './Header';
 import TopVentures from './TopVentures';
 import LoginPage from './LoginPage'
 import {CookiesProvider, useCookies} from 'react-cookie'
-
+ 
 
 function Body(){
 
@@ -15,7 +15,8 @@ function Body(){
 
     function handleLogin(user){
         // setCookies(name, value, options[])       -- SYNTAX
-        setCookies("user", user, {path:'/', expires: Date.now()+2});
+        setCookies("user", user, {path:'/'});
+        setCookies('isLoggedIn', true);
     }
 
     const ventures = [{'name':'Machine Learning', 'progress':'10'},

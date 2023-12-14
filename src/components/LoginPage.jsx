@@ -12,7 +12,7 @@ export default function({onLogin}){
         // event.preventDefault();
         onLogin({email, pass});
     }
-
+ 
     
 
     return(
