@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CompoCss.css'
 import {useNavigate} from 'react-router-dom';
 import Header from './Header';
 import TopVentures from './TopVentures';
 import LoginPage from './LoginPage'
 import {CookiesProvider, useCookies} from 'react-cookie'
+import Profile from './Profile';
  
 
 function Body(){
@@ -12,6 +13,7 @@ function Body(){
     const username = 'Eminem';
 
     const [cookies, setCookies] = useCookies(["user"]);
+    const [isProfile, setProfile] = useState(false);
 
     function handleLogin(user){
         // setCookies(name, value, options[])       -- SYNTAX
@@ -30,13 +32,18 @@ function Body(){
 
     return(
     <>
-        <Header/>
+        <Header setProfile={setProfile}/>
 
         <CookiesProvider>
             {
 
                 (cookies.user) 
                 ?
+                <>
+                {(isProfile)
+                ?
+                <Profile/>
+                :
                 <>
                 <div className='body'>
 
@@ -60,6 +67,8 @@ function Body(){
                         
                     </div>
                     <TopVentures/>
+                            </>
+}
                 </>
                 :
                 <LoginPage onLogin={handleLogin} />

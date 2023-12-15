@@ -27,7 +27,7 @@ export default function({onLogin}){
             </div>
         </div>
 
-            <button onClick={(e)=>{handleSubmit(e.target.value)}}>Login</button>
+            {/* <button onClick={(e)=>{handleSubmit(e.target.value)}}>Login</button> */}
             
         </>
     );

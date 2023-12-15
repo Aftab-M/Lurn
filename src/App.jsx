@@ -6,6 +6,7 @@ import Body from './components/Body'
 import VenturePage from './components/VenturePage'
 import NewVenture from './components/NewVenture'
 import AddForm from './components/AddForm'
+import Profile from './components/Profile'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,9 +16,11 @@ function App() {
     {/* <Header/> */}
     <BrowserRouter>
       <Routes>
+      
         <Route path='/venture/:name' element={<VenturePage/>}/>
         <Route path='/newVenture' element={<NewVenture/>} />
         <Route path='/addVenture/:name' element={<AddForm/>} />
+        <Route path='/profile' element={<Profile/>}/>  
         <Route path='/' element={<Body/>} />
       </Routes>
     </BrowserRouter>
