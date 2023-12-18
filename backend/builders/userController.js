@@ -22,6 +22,7 @@ async function userLogin(req, res){
 
     } catch (error) {
         console.log("In catch, the error is : "+error)
+        console.log('HOLLER THE ERROR')
     }
 }
 
