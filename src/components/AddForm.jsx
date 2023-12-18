@@ -39,7 +39,7 @@ export default function AddForm(props){
                 <br/><br/><br/>
                 How many months are you planning to achieve this goal in ?? <br/><input onChange={(e)=>{setMonths(e.target.value)}} type="number" placeholder='2 months, maybe ??' />
                 <br/>
-                <a href="http://localhost:5173/" target='_blank'>GOMD</a>
+                {/* <a href="http://localhost:5173/" target='_blank'>GOMD</a> */}
                 <button onClick={()=>{validateAndNavigate()}}> Let's go ! </button>
 
             </div>

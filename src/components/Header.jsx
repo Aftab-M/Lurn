@@ -12,7 +12,8 @@ function Header({setProfile}){
     
     const logOut = () => {
         setCookies('isLoggedIn', false)
-        setCookies('user', null)
+        setCookies('user', {_id:'', name:'No user'})
+        setCookies('autoken', '')
     }
 
     const goToProfile = () =>{
