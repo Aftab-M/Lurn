@@ -42,9 +42,12 @@ function Body(){
 
     useEffect((()=>{
         // console.log(cookies.user._id);
+        
         axios.get('http://localhost:3000/getHomeData/'+cookies.user._id).then((d)=>{
             console.log('http://localhost:3000/getHomeData/'+cookies.user._id)
             console.log(d)
+            setUser(d.data.data);
+            console.log('The data is : '+d.data.data)
         })
         .catch((err)=>{ console.log('Failed to fetch data in useEffect() !!') })
         // axios.get('http://localhost:3000/users/').then((res)=>{setUser(res.data.data); console.log('Data is : '+res.data.data)}).catch((err)=>console.log('EOROROR ! : '+err))
@@ -68,8 +71,8 @@ function Body(){
 
         <CookiesProvider>
             {
-
-                (cookies.user.name!='No user') 
+// cookies.user.name!=='No user'
+                (true) 
                 ?
                 <>
                 {(isProfile)

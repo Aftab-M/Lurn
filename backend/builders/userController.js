@@ -1,5 +1,11 @@
 const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
+// const LocalStorage = require('node-localstorage').LocalStorage
+const store = require('store')
+
+// localStorage = new LocalStorage('./scratch')
+
+
 
 async function userLogin(req, res){
     console.log('In userLogin() !!!')
@@ -13,6 +19,9 @@ async function userLogin(req, res){
                 if(err){ console.log("EROROROR ! "+err) }
                 else{
                     console.log('IN ELSE')
+                    // localStorage.setItem({'token':token, 'user':user});
+                    store.set({token:token, user:user})
+                    console.log('After store statement')
                     res.send({status:'VALID', token:token, user:user});
                 }
             });
@@ -31,13 +40,14 @@ async function userLogin(req, res){
 async function getHomeData(req, res){
     console.log('In getHomeData() !!')
 
-    const data = User.find({_id:req.params.id})
+    const data = await User.findOne({_id:req.params.id})
 
     console.log(data)
 
     if(!data){ console.log('No related data in the Database !!') }
     else{
-        res.send({data:data, status:'Sab changa'})
+        // res.send({data:data, status:'Sab changa'})
+        res.json({data:data})
     }
 
 
