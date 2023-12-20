@@ -7,6 +7,7 @@ import VenturePage from './components/VenturePage'
 import NewVenture from './components/NewVenture'
 import AddForm from './components/AddForm'
 import Profile from './components/Profile'
+import LoginPage from './components/LoginPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -21,6 +22,7 @@ function App() {
         <Route path='/newVenture' element={<NewVenture/>} />
         <Route path='/addVenture/:name' element={<AddForm/>} />
         <Route path='/profile' element={<Profile/>}/>  
+        <Route path='/login' element={<LoginPage/>} />
         <Route path='/' element={<Body/>} />
       </Routes>
     </BrowserRouter>

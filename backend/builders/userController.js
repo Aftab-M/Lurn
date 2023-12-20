@@ -12,7 +12,10 @@ async function userLogin(req, res){
     try {
         
         const user = await User.findOne({$and:[{email:req.body.email}, {password:req.body.password}]});
-        if(!user){ console.log('Invalid credentials !!') }
+        if(!user){
+            console.log('Invalid credentials !!');
+            res.send({status:'INVALID USER'});
+        }
         else{
 
             jwt.sign({ user }, 'random-key', {expiresIn:'1hr'}, (err, token)=>{
@@ -20,7 +23,7 @@ async function userLogin(req, res){
                 else{
                     console.log('IN ELSE')
                     // localStorage.setItem({'token':token, 'user':user});
-                    store.set({token:token, user:user})
+                    // store.set({token:token, user:user})
                     console.log('After store statement')
                     res.send({status:'VALID', token:token, user:user});
                 }
