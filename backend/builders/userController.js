@@ -2,6 +2,7 @@ const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 // const LocalStorage = require('node-localstorage').LocalStorage
 const store = require('store')
+// 'localStorage'
 
 // localStorage = new LocalStorage('./scratch')
 
@@ -22,10 +23,8 @@ async function userLogin(req, res){
                 if(err){ console.log("EROROROR ! "+err) }
                 else{
                     console.log('IN ELSE')
-                    // localStorage.setItem({'token':token, 'user':user});
-                    // store.set({token:token, user:user})
-                    console.log('After store statement')
-                    res.send({status:'VALID', token:token, user:user});
+                    // console.log('After store statement')
+                    res.send({status:'VALID', id:user._id, token:token});
                 }
             });
 
@@ -40,25 +39,65 @@ async function userLogin(req, res){
 
 
 
-async function getHomeData(req, res){
-    console.log('In getHomeData() !!')
+async function getUser(req, res){
+    try{
+        const ii = req.params.id;
+        console.log('ID IS : '+ii)
+        User.findOne({_id:ii})
+        .then((user)=>{
+            console.log("FOUND EM" + user);
+            res.send({user:user})
+        })
+        .catch((err)=>{console.log('NODE ERROR : '+err)})
+        
 
-    const data = await User.findOne({_id:req.params.id})
+        // console.log('ABC IS : '+abc)
+        // if(!user){console.log('NOT USER' + user)}
+        // else{
+        //     console.log(user)
+        //     res.send({user:user})
+        // }
+        
+    }catch(err){console.log('CAUGHT : '+err)}
 
-    console.log(data)
+}
 
-    if(!data){ console.log('No related data in the Database !!') }
-    else{
-        // res.send({data:data, status:'Sab changa'})
-        res.json({data:data})
+
+async function checkIfUserExists(req, res){
+    const uname = req.params.uname;
+    console.log('Username is : '+uname)
+    const uu = await User.findOne({name:uname})
+
+    if(!uu){
+        console.log('User does not exist !')
+        res.send({exists:'no'})
     }
+    else{
+        console.log('Username already exists !!')
+        res.send({exists:'yes'})
+    }
+}
 
 
+
+
+async function checkIfEmailExists(req, res){
+    const email = req.params.email;
+    console.log('Email is : '+email)
+    const uu = await User.findOne({email:email})
+
+    if(!uu){
+        console.log('Email does not exist !')
+        res.send({exists:'no'})
+    }
+    else{
+        console.log('Email already exists !!')
+        res.send({exists:'yes'})
+    }
 }
 
 
 
 
 
-
-module.exports = {userLogin, getHomeData}
+module.exports = {userLogin, getUser, checkIfUserExists, checkIfEmailExists}

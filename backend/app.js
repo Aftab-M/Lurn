@@ -8,7 +8,7 @@ const http = require('http').Server(app)
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const {userLogin, getHomeData} = require('./builders/userController.js')
+const {userLogin, getUser, checkIfUserExists, checkIfEmailExists} = require('./builders/userController.js')
 
 
 mong.connect("mongodb+srv://useraf:af9999a@cluster0.awk4cby.mongodb.net/lurn?retryWrites=true&w=majority");
@@ -56,11 +56,22 @@ function sendUser(mail){
 
 
 
-app.get('/getHomeData/:id', async(req, res)=>{getHomeData(req, res)})
 
 
 
 app.post('/login', async(req, res)=>{userLogin(req, res)})
+
+
+app.post('/getUser/:id', async(req, res)=>{getUser(req, res)})
+
+
+app.post('/checkUsername/:uname', async(req, res)=>{checkIfUserExists(req, res)})
+
+
+app.post('/checkEmail/:email', async (req, res)=>{checkIfEmailExists(req, res)})
+
+
+
 
 
 

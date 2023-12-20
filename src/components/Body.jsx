@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CompoCss.css'
 import {useNavigate} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Header from './Header';
 import TopVentures from './TopVentures';
 import LoginPage from './LoginPage'
@@ -10,54 +11,25 @@ import axios from 'axios';
 
 function Body(){
 
-    const [cookies, setCookies] = useCookies(["user"]);
-    const [isProfile, setProfile] = useState(false);
-    const [usr, setUser] = useState({_id:"" ,name:'No user'});
+    const {id} = useParams()
 
-    function handleLogin(user){
-        // setCookies(name, value, options[])       -- SYNTAX
-        const a = user.email;
-        const b = user.pass;
-        console.log('USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR IS : '+a+' and '+b)
-        axios.post('http://localhost:3000/login', {email:a, password:b})
+    const [user, setUser] = useState({name:'Nope'});
+
+    const [ventures, setVentures] = useState([])
+
+
+    useEffect((()=>{        
+        console.log('-------------------> ID IS : '+id)
+        axios.post('http://localhost:3000/getUser/'+id)
         .then((res)=>{
-            console.log("Status is : "+res.data.status);
-            console.log("Token is : "+res.data.token);
-            const u = res.data.user;
-            setUser(u);
-            // console.log(res.data.user)
-            if(res.data.token){
-                setCookies("user", u, {path:'/'});
-                setCookies('isLoggedIn', true);
-                setCookies('autoken',res.data.token);
-            }
+            console.log('RETURNED DATA IS : '+res.data.user)
+            setUser(res.data.user);
         })
-        .catch((err)=>{
-            console.log(err)
-        })
+        .catch((error)=>{console.log("ERROROROROR IS : "+error)})
 
-        
-    }
-
-
-    useEffect((()=>{
-        // console.log(cookies.user._id);
-        
-        // axios.get('http://localhost:3000/getHomeData/'+cookies.user._id).then((d)=>{
-        //     console.log('http://localhost:3000/getHomeData/'+cookies.user._id)
-        //     console.log(d)
-        //     setUser(d.data.data);
-        //     console.log('The data is : '+d.data.data)
-        // })
-        // .catch((err)=>{ console.log('Failed to fetch data in useEffect() !!') })
-        // // axios.get('http://localhost:3000/users/').then((res)=>{setUser(res.data.data); console.log('Data is : '+res.data.data)}).catch((err)=>console.log('EOROROR ! : '+err))
-        
     }),[])
 
 
-    const ventures = [{'name':'Machine Learning', 'progress':'10'},
-                    {'name':'Spanish', 'progress':'40'}
-                    ];
     const navv = useNavigate()
     function nav(name){
         console.log('in nav')
@@ -67,14 +39,14 @@ function Body(){
 
     return(
     <>
-        <Header setProfile={setProfile}/>
+        <Header id={id} />
 
             {
                 <>
                 <div className='body'>
 
                     <div onClick={()=>{navv('/newVenture')}} style={{'fontSize':'2rem', 'paddingBottom':'1rem', display:'flex', alignItems:'center', justifyContent:'space-between'}}> 
-                        Hello, {usr.name} 
+                        Hello, {user.name} 
                         <div className="addVen">
                             Add Venture
                         </div>

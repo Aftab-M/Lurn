@@ -8,6 +8,7 @@ import NewVenture from './components/NewVenture'
 import AddForm from './components/AddForm'
 import Profile from './components/Profile'
 import LoginPage from './components/LoginPage'
+import LandingPage from './LandingPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,7 +24,8 @@ function App() {
         <Route path='/addVenture/:name' element={<AddForm/>} />
         <Route path='/profile' element={<Profile/>}/>  
         <Route path='/login' element={<LoginPage/>} />
-        <Route path='/' element={<Body/>} />
+        <Route path='/home/:id' element={<Body/>} />
+        <Route path='/' element={<LandingPage/>} />
       </Routes>
     </BrowserRouter>
       {/* <div className='mainClass'>

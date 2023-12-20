@@ -5,44 +5,38 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import Profile from "./Profile";
 
 
-function Header({setProfile}){
+function Header(props){
     const nav = useNavigate()
     const [cookie, setCookies] = useCookies(['isLoggedIn', 'userName']);
     const isLoggedIn = cookie.isLoggedIn;
     
     const logOut = () => {
-        setCookies('isLoggedIn', false)
-        setCookies('user', {_id:'', name:'No user'})
-        setCookies('autoken', '')
+        localStorage.setItem('token', 'nun')
+        localStorage.setItem('user', 'nun')
     }
 
     const goToProfile = () =>{
         console.log('in gotoProfile');
-        setProfile(true)
+        
     }
 
 
     return(
     <>
-        <CookiesProvider>
-            <div className='header' onClick={()=>{nav('/')}}>
+        
+            <div className='header'>
                 LURN
                 {
-                    (isLoggedIn) ?
+                
                     <div>
-                    <button className="log" style={{marginRight:'1rem', letterSpacing:'1px'}} onClick={()=>{goToProfile()}}>Profile</button>
+                    <button className="log" style={{marginRight:'.1rem', letterSpacing:'1px'}} onClick={()=>{goToProfile()}}>Profile</button>
                     <button className="log" onClick={()=>{logOut()}}>LOG OUT</button>
                     </div>
-                    
-                                :
-                    <>
-                    <button className="log">LOG IN</button>
-                    </>
-                    
+                                        
                 }
             </div>
             
-        </CookiesProvider>
+
         
     
     </>);

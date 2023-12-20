@@ -2,7 +2,7 @@ import React from "react";
 import './topVen.css'
 import {useNavigate} from 'react-router-dom'
 
-export default function TopVentures(){
+export default function TopVentures(props){
     const topVentures = [
         {name: 'Machine Learning', 'count':20},
         {name: 'Spanish', 'count':10},
