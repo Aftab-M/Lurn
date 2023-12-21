@@ -156,9 +156,12 @@ async function addNewLearning(req, res){
     // console.log('In addNewLearning')
 
     const learning = await Learnings.create({ventureName:req.body.vName, username:req.body.username, learningTitle:req.body.title, learningDesc:req.body.desc, isPublic:false})
-    .then((data)=>{
+    .then(async(data)=>{
         // console.log(data)
         res.send({status:'done'})
+        const up = await User.updateOne({name:req.body.username, 'venturesList.ventureName':req.body.vName}, {
+            $inc:{'venturesList.$.learnCount':1}
+        }).then((d)=>console.log('Updated count, '+d))
     })
     .catch((err)=>{
         console.log('Error : '+err)
