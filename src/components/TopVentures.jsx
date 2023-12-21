@@ -31,6 +31,14 @@ export default function TopVentures(props){
     }
 
 
+    const navv = useNavigate()
+    function navi(id, name){
+        console.log('in nav')
+        navv('/addVenture/'+name+'/'+id)
+    }
+
+
+
     useEffect(()=>{
         axios.post('http://localhost:3000/getTopVentures')
         .then((res)=>{
@@ -50,7 +58,7 @@ export default function TopVentures(props){
                 <div className="venList">
                     {
                         topVentures.map((e)=>(
-                                <div key={e._id} className="oneVen" onClick={()=>{nav('/addVenture/'+e.name+'/'+props.id)}}>
+                                <div key={e._id} className="oneVen" onClick={()=>{navi(props.id, e.venName)}}>
                                     <div style={{fontSize:'1.3rem'}}>{e.venName}</div>
                                     <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.venPeopleCount} people</div>
 

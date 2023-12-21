@@ -22,7 +22,7 @@ function App() {
         <Route path='/:uname/venture/:name' element={<VenturePage/>}/>
         <Route path='/newVenture/:id' element={<NewVenture/>} />
         <Route path='/addVenture/:name/:id' element={<AddForm/>} />
-        <Route path='/profile' element={<Profile/>}/>  
+        <Route path='/:uname/profile' element={<Profile/>}/>  
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/home/:id' element={<Body/>} />
         <Route path='/' element={<LandingPage/>} />

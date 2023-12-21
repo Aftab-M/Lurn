@@ -178,7 +178,7 @@ function VenturePage(){
 
 
     function toggle(e){
-        axios.post('http://localhost:3000/toggleVisibility', {id:e._id})
+        axios.post('http://localhost:3000/toggleVisibility', {id:e._id, uname:uname, vname:e.ventureName})
         .then((res)=>{
             if(res.data.status=='okay'){
                 location.reload()
@@ -193,7 +193,7 @@ function VenturePage(){
     return(
     <>
         
-        <Header name={uname}/>
+        <Header uname={uname}/>
         
         {
 

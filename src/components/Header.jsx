@@ -1,7 +1,7 @@
 import React from "react";
 import './CompoCss.css';
 import { useNavigate } from "react-router-dom";
-
+// import 'localStorage';
 import { CookiesProvider, useCookies } from "react-cookie";
 import Profile from "./Profile";
 
@@ -15,10 +15,12 @@ function Header(props){
     const logOut = () => {
         localStorage.setItem('token', 'nun')
         localStorage.setItem('user', 'nun')
+        nav('/')
     }
 
     const goToProfile = () =>{
         console.log('in gotoProfile');
+        nav('/'+props.uname+'/profile')
         
     }
 

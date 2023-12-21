@@ -55,7 +55,7 @@ function Body(){
 
     return(
     <>
-        <Header id={id} />
+        <Header id={id} uname={user.name} />
 
             {
                 <>
@@ -80,7 +80,7 @@ function Body(){
                     </div>
                         
                     </div>
-                    <TopVentures id={id} mylist={ventures}/>
+                    <TopVentures uname={user.name} id={id} mylist={ventures}/>
                             </>
 }
              

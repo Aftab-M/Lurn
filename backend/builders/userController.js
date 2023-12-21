@@ -108,7 +108,7 @@ async function registerUser(req, res){
     .then((data)=>{
         // console.log(data);
         // bcrypt.compare(req.body.password, data).then((result)=>console.log(result)).catch((err)=>console.log(err))
-        const newUser = User.insertMany({email:req.body.email, password:req.body.password, name: req.body.uname, venturesList:[{ventureName:'', learnCount:0}]})
+        const newUser = User.insertMany({email:req.body.email, password:req.body.password, name: req.body.uname, pubCont:0, venturesList:[{ventureName:'', learnCount:0}]})
         .then((ee)=>{
             // console.log('User Created !')
             res.send({status:'registered'})
@@ -127,9 +127,10 @@ async function registerUser(req, res){
 async function addNewVenture(req, res){
     // console.log("ID IS : "+req.params.id+", and name is : "+req.params.id)
     await User.updateOne({_id:req.body.id}, {$push:{venturesList: {ventureName:req.body.name, learnCount:0}}})
-    .then((data)=>{
+    .then(async(data)=>{
         // console.log('GOT THE DATA : '+data)
         res.send({status:'done'})
+        const u = await Ventures.updateOne({venName:req.body.name}, {$inc:{venPeopleCount:1}})
     })
     .catch((err)=>{
         console.log('Error : '+err)
@@ -198,8 +199,9 @@ async function toggleVisibility(req, res){
         // console.log(data)
         const val = data['isPublic'];
         const uu = await Learnings.updateOne({_id:req.body.id}, {$set:{isPublic:!val}})
-        .then((dataa)=>{
+        .then(async(dataa)=>{
             res.send({status:'okay'});
+            const tt = await User.updateOne({name:req.body.uname}, {$inc:{pubCont:1}}).then((dd)=>console.log('updated !'))
         })
         .catch((err)=>{
             res.send({status:'err'})
@@ -252,5 +254,27 @@ async function getTopLearnings(req,res){
 }
 
 
+async function getProfile(req, res){
+    console.log('Name : '+req.body.name)
+    const ss = User.findOne({name:req.body.name})
+    .then((data)=>{
+        console.log('Data : '+data)
+        var cnt = 0;
+        data.venturesList.map((e)=>{
+            cnt+=e.learnCount;
+        })
+        console.log(cnt);
+        res.send({status:'okay', user:data, count:cnt})
+    })
+    .catch((err)=>{
+        console.log('Error !')
+        res.send({status:'err'})
+    })
+}
 
-module.exports = {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, getTopLearnings}
+
+
+
+
+
+module.exports = {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, getTopLearnings, getProfile}

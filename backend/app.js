@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Venture = require('./models/ventureModel.js')
 
-const {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, toplearnings, getTopLearnings} = require('./builders/userController.js')
+const {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, toplearnings, getTopLearnings, getProfile} = require('./builders/userController.js')
 
 
 mong.connect("mongodb+srv://useraf:af9999a@cluster0.awk4cby.mongodb.net/lurn?retryWrites=true&w=majority");
@@ -99,8 +99,7 @@ app.post('/deleteLearning', async(req, res)=>{deleteLearning(req, res)})
 app.post('/getTopVentures', async(req, res)=>{getTopLearnings(req, res)})
 
 
-
-
+app.post('/getProfile', async(req, res)=>{getProfile(req, res)})
 
 
 app.post('/register', async (req, res)=>{
