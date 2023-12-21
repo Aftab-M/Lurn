@@ -19,9 +19,9 @@ function App() {
     <BrowserRouter>
       <Routes>
       
-        <Route path='/venture/:name' element={<VenturePage/>}/>
-        <Route path='/newVenture' element={<NewVenture/>} />
-        <Route path='/addVenture/:name' element={<AddForm/>} />
+        <Route path='/venture/:id/:name' element={<VenturePage/>}/>
+        <Route path='/newVenture/:id' element={<NewVenture/>} />
+        <Route path='/addVenture/:name/:id' element={<AddForm/>} />
         <Route path='/profile' element={<Profile/>}/>  
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/home/:id' element={<Body/>} />

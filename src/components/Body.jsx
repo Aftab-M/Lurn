@@ -13,7 +13,7 @@ function Body(){
 
     const {id} = useParams()
 
-    const [user, setUser] = useState({name:'Nope'});
+    const [user, setUser] = useState({name:'__'});
 
     const [ventures, setVentures] = useState([])
 
@@ -22,10 +22,26 @@ function Body(){
         console.log('-------------------> ID IS : '+id)
         axios.post('http://localhost:3000/getUser/'+id)
         .then((res)=>{
-            console.log('RETURNED DATA IS : '+res.data.user)
+            // console.log('RETURNED DATA IS : '+res.data.user)
             setUser(res.data.user);
+
+            axios.post('http://localhost:3000/getHomeData', {name:res.data.user.name})
+            .then((result)=>{
+                // console.log("Ventures are : "+result.data.ventures);
+                setVentures(result.data.ventures);
+            })
+            .catch((err)=>{
+                console.log('Error : '+err)
+            })
+
+
+
         })
         .catch((error)=>{console.log("ERROROROROR IS : "+error)})
+
+        
+
+
 
     }),[])
 
@@ -45,26 +61,26 @@ function Body(){
                 <>
                 <div className='body'>
 
-                    <div onClick={()=>{navv('/newVenture')}} style={{'fontSize':'2rem', 'paddingBottom':'1rem', display:'flex', alignItems:'center', justifyContent:'space-between'}}> 
+                    <div style={{'fontSize':'2rem', 'paddingBottom':'1rem', display:'flex', alignItems:'center', justifyContent:'space-between'}}> 
                         Hello, {user.name} 
-                        <div className="addVen">
+                        <div className="addVen" onClick={()=>{navv('/newVenture/'+user._id)}}>
                             Add Venture
                         </div>
                     </div>
                     Your Ventures : 
                     <div className='ventures'>
                         { ventures.map((e)=>(
-                            <>
-                                <div className='venture' onClick={()=>{nav(e.name)}}> {e.name} 
-                                <div className='venProg'> {e.progress} %  </div>
+                              
+                                <div onClick={()=>{nav(user._id+'/'+e.ventureName)}} className='venture' key={e._id}>
+                                    <div className='venName'> {e.ventureName} </div>
+                                    <div className='venProg'> {e.learnCount} %  </div>
                                 </div>
-                        
-                            </>
+
                         )) }
                     </div>
                         
                     </div>
-                    <TopVentures/>
+                    <TopVentures id={id}/>
                             </>
 }
              

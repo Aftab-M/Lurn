@@ -2,9 +2,12 @@ import React from 'react';
 import './newVen.css'
 import Header from './Header';
 import { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
+import axios from 'axios';
 
 export default function NewVenture(){
+
+    const {id} = useParams()
 
     const topVentures = [
         {name: 'Machine Learning', 'count':20},
@@ -108,7 +111,15 @@ export default function NewVenture(){
 
     function NoItems(props){
         function addVen(){
-            alert('Adding new venture '+props.searchItem)
+            // alert('Adding new venture '+props.searchItem)
+            axios.post('http://localhost:3000/addNewVenture', {id:id, name:props.searchItem})
+            .then((res)=>{
+                console.log(res.data);
+                if(res.data.status=='done'){nav('/home/'+id)}
+            })
+            .catch((err)=>{
+                console.log('ERROR  :  ---> '+err)
+            })
         }
         return(
             <>

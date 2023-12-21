@@ -28,6 +28,9 @@
 
 .venture{
     margin: .3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     font-size: 1.5rem;
     background-color: green;
     padding: .7rem;
@@ -58,8 +61,3 @@
     }
 }
 
-
-
-.log{
-    
-}

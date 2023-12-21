@@ -2,13 +2,14 @@ import React from 'react'
 import {useState} from 'react'
 import './aForm.css'
 import {useParams, useNavigate} from 'react-router-dom'
+import axios from 'axios'
 // import { all } from 'express/lib/application'
 
 
 export default function AddForm(props){
 
     const nav = useNavigate()
-    const {name} = useParams();
+    const {name, id} = useParams();
 
     const [newThingsCount, setNewThingsCount] = useState();
     const [aim, setAim] = useState();
@@ -22,7 +23,17 @@ export default function AddForm(props){
         if(aim==undefined || aim==''){alert('Come on, Set some aim !!!'); allGood = false;}
         if(months==undefined || months==0){alert('Choose some good months please !'); allGood = false;}
         
-        if(allGood){ nav('/venture/'+name) }
+        if(allGood){
+            axios.post('http://localhost:3000/addNewVenture', {id:id, name:name})
+            .then((res)=>{
+                console.log(res.data);
+                if(res.data.status=='done'){nav('/home/'+id)}
+            })
+            .catch((err)=>{
+                console.log('ERROR  :  ---> '+err)
+            })
+            // nav('/venture/'+name)
+        }
 
     }
 

@@ -23,13 +23,12 @@ export default function TopVentures(props){
                 <div className="venList">
                     {
                         topVentures.map((e)=>(
-                            <>
-                                <div className="oneVen" onClick={()=>{nav('/addVenture/'+e.name)}}>
+                                <div key={e.count} className="oneVen" onClick={()=>{nav('/addVenture/'+e.name+'/'+props.id)}}>
                                     <div style={{fontSize:'1.3rem'}}>{e.name}</div>
                                     <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div>
 
                                 </div>
-                            </>
+
                         ))
                     }
                 </div>

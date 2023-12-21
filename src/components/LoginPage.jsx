@@ -3,6 +3,7 @@ import {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import './loginReg.css'
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function(){
 
@@ -55,8 +56,27 @@ export default function(){
         const [emailAvailable, setEmailAvailable] = useState(false);
         const [UnameAvailable, setUnameAvailable] = useState(false);
 
-        function regLogic(){
-            alert('Register Logic')
+        function regLogic(e){
+            
+            // toast.error('Registered Homie', {autoClose:true, hideProgressBar:false, position:toast.POSITION.TOP_RIGHT})
+            var allGood = true;
+            if(email==''){alert('Cannot leave email empty !'); allGood = false;}
+            if(uname==''){alert('Cannot leave username empty !'); allGood = false;}
+            if(pass==''){alert('Please fill both passwords !'); allGood = false;}
+            if(confirmPass==''){alert('Please fill both passwords !'); allGood = false;}
+            if(emailAvailable == false){alert('Please select a valid email !'); allGood = false;}
+            if(UnameAvailable == false){alert('Please select a valid username !'); allGood = false;}
+
+            if(allGood){
+                console.log('IN REGISTER LOGIC')
+                axios.post(urlPrefix+'/register', {email:email, uname:uname, password:pass})
+                .then((res)=>{
+                    if(res.data.status=='registered'){alert('Registered, you can now Log In !!'); setLogOrReg('login');}
+                    else if(res.data.status=='db_err'){alert('DB Error ! Please try again...')}
+                })
+            }
+            else{}
+            
         }
 
         function checkAndSetUname(e){
@@ -66,11 +86,11 @@ export default function(){
             .then((res)=>{
                 if(res.data.exists=='yes'){
                     alert('Username exists !!')
-                    setUnameAvailable(true)
+                    setUnameAvailable(false)
                 }
                 else{
                     alert('Username available')
-                    setEmailAvailable(true)
+                    setUnameAvailable(true)
                 }
             })
             .catch((err)=>{
@@ -87,11 +107,11 @@ export default function(){
             .then((res)=>{
                 if(res.data.exists=='yes'){
                     alert('Email exists !!')
-                    return true;
+                    setEmailAvailable(false);
                 }
                 else{
                     alert('Email available')
-                    return false;
+                    setEmailAvailable(true)
                 }
             })
             .catch((err)=>{
@@ -114,12 +134,19 @@ export default function(){
                 <input type='text' placeholder='Username' value={uname} onBlur={(e)=>{checkAndSetUname(e)}}  onChange={(e)=>{setUname(e.target.value)}}/>
                 <input type='text' placeholder='Password' value={pass} onChange={(e)=>setPass(e.target.value)} />
                 <input type='text' placeholder='Confirm Password' value={confirmPass} onChange={(e)=>setConfirm(e.target.value)} />
-                <button onClick={()=>{regLogic()}} className='btn'> REGISTER </button>
+                <div>
+                <button onClick={(e)=>{regLogic(e)}} className='btn'> REGISTER </button>
+                
+                </div>
+
             </div>
         </div>
+        <ToastContainer/>   
             </>
         );
     }
+
+
 
 
 
