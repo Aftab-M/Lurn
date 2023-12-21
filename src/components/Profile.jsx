@@ -15,7 +15,11 @@ export default function Profile(){
         axios.post('http://localhost:3000/getProfile', {name:uname})
         .then((res)=>{
             setUser(res.data.user);
+            user.venturesList.sort((a, b)=> b.learnCount - a.learnCount);
+            const r = res.data.user.venturesList.sort((a,b)=> b.learnCount - a.learnCount )
+            // console.log(r)
             setLearnings(res.data.count)
+
         })
     }, [])
 
