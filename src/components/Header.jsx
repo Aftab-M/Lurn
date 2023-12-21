@@ -1,12 +1,14 @@
 import React from "react";
 import './CompoCss.css';
 import { useNavigate } from "react-router-dom";
+
 import { CookiesProvider, useCookies } from "react-cookie";
 import Profile from "./Profile";
 
 
 function Header(props){
     const nav = useNavigate()
+
     const [cookie, setCookies] = useCookies(['isLoggedIn', 'userName']);
     const isLoggedIn = cookie.isLoggedIn;
     
@@ -25,7 +27,7 @@ function Header(props){
     <>
         
             <div className='header'>
-                LURN
+                <div onClick={()=>{nav(-1)}}>LURN</div>
                 {
                 
                     <div>

@@ -1,6 +1,9 @@
 const mong = require('mongoose')
 
-const ventureSchema = mong.Schema({
+const ventureSchema = new mong.Schema({
     venName:String, 
-    venPeopleCount: int,
+    venPeopleCount: Number,
 });
+
+
+module.exports = mong.model('Venture', ventureSchema)

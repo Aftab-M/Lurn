@@ -193,7 +193,7 @@ function VenturePage(){
     return(
     <>
         
-        <Header/>
+        <Header name={uname}/>
         
         {
 
@@ -253,17 +253,10 @@ function VenturePage(){
                 <div className="tops">
                     {
                         topLearnings.map((e)=>(
-                            <>
-                            
-                                <div className="topOne">
+                                <div  key={e._id} className="topOne">
                                     <div style={{fontSize: '1.5rem'}}>{e.learningTitle}</div>
                                     <div style={{fontSize:'.8rem', paddingTop:'.3rem'}}> {e.learningDesc} </div>
                                 </div>
-                            
-                            
-                                
-        
-                            </>
                         ))
                     }        
                 </div>

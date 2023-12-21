@@ -19,7 +19,7 @@ function Body(){
 
 
     useEffect((()=>{        
-        console.log('-------------------> ID IS : '+id)
+        // console.log('-------------------> ID IS : '+id)
         axios.post('http://localhost:3000/getUser/'+id)
         .then((res)=>{
             // console.log('RETURNED DATA IS : '+res.data.user)
@@ -80,7 +80,7 @@ function Body(){
                     </div>
                         
                     </div>
-                    <TopVentures id={id}/>
+                    <TopVentures id={id} mylist={ventures}/>
                             </>
 }
              

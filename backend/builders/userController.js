@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken')
 const store = require('store')
 const bcrypt = require('bcrypt')
 const Learnings = require('../models/learningModel')
+const Ventures = require('../models/ventureModel')
+
 
 
 
@@ -172,7 +174,7 @@ async function getLearnings(req, res){
         const tl = await Learnings.find({ventureName:req.body.venName, isPublic:true})
         .then((dataa)=>{
             res.send({status:'okay', learnings:data, topLearnings:dataa})
-            console.log("TOP LEARNINGS :  : "+data)
+            // console.log("TOP LEARNINGS :  : "+data)
         })
         .catch((err)=>{
             console.log('Error : '+err)
@@ -236,7 +238,16 @@ async function deleteLearning(req, res){
 }
 
 
+async function getTopLearnings(req,res){
+    // console.log('In getTopLearnings !!')
+    const ss = await Ventures.find({})
+    // console.log('VENTURES ARE : '+ss);
+    if(!ss){res.send({status:'err'})}
+    else{
+        res.send({status:'okay', tv:ss})
+    }
+}
 
 
 
-module.exports = {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility}
+module.exports = {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, getTopLearnings}

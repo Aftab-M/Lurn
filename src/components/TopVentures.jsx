@@ -1,19 +1,46 @@
 import React from "react";
 import './topVen.css'
+import { useState } from "react";
 import {useNavigate} from 'react-router-dom'
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function TopVentures(props){
-    const topVentures = [
-        {name: 'Machine Learning', 'count':20},
-        {name: 'Spanish', 'count':10},
-        {name: 'Competitive Programming', 'count':12},
-        {name: 'Hydraulics', 'count':32},
-        {name: 'Music Composition', 'count':39},
-        {name: 'JavaScript', 'count':27},
-    ];
+    // const topVentures = [
+    //     {name: 'Machine Learning', 'count':20},
+    //     {name: 'Spanish', 'count':10},
+    //     {name: 'Competitive Programming', 'count':12},
+    //     {name: 'Hydraulics', 'count':32},
+    //     {name: 'Music Composition', 'count':39},
+    //     {name: 'JavaScript', 'count':27},
+    // ];
+
+    const [topVentures, setTopVentures] = useState([]);
 
     const nav = useNavigate();
 
+    function filterAndSetTV(l){
+        console.log('In filterAndSetTV'+props.mylist)
+
+        const filtered = l.filter(item=>
+                !props.mylist.some(listItem => listItem.ventureName == item.venName)
+            )
+        
+        console.log(filtered);
+        setTopVentures(filtered);
+    }
+
+
+    useEffect(()=>{
+        axios.post('http://localhost:3000/getTopVentures')
+        .then((res)=>{
+            if(res.data.status=='okay'){setTopVentures(res.data.tv);}
+            else if(res.data.status=='err'){console.log('DB Error !')}
+        })
+        .catch((err)=>{
+            console.log('Error ! : '+err)
+        })
+    },[])
 
 
     return(
@@ -23,9 +50,9 @@ export default function TopVentures(props){
                 <div className="venList">
                     {
                         topVentures.map((e)=>(
-                                <div key={e.count} className="oneVen" onClick={()=>{nav('/addVenture/'+e.name+'/'+props.id)}}>
-                                    <div style={{fontSize:'1.3rem'}}>{e.name}</div>
-                                    <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div>
+                                <div key={e._id} className="oneVen" onClick={()=>{nav('/addVenture/'+e.name+'/'+props.id)}}>
+                                    <div style={{fontSize:'1.3rem'}}>{e.venName}</div>
+                                    <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.venPeopleCount} people</div>
 
                                 </div>
 
