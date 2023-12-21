@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 // const LocalStorage = require('node-localstorage').LocalStorage
 const store = require('store')
 const bcrypt = require('bcrypt')
+const Learnings = require('../models/learningModel')
 
 
 
@@ -149,6 +150,93 @@ async function getHomeData(req, res){
 }
 
 
+async function addNewLearning(req, res){
+    // console.log('In addNewLearning')
+
+    const learning = await Learnings.create({ventureName:req.body.vName, username:req.body.username, learningTitle:req.body.title, learningDesc:req.body.desc, isPublic:false})
+    .then((data)=>{
+        // console.log(data)
+        res.send({status:'done'})
+    })
+    .catch((err)=>{
+        console.log('Error : '+err)
+        res.send({status:'db_err'})
+    })
+}
 
 
-module.exports = {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData}
+async function getLearnings(req, res){
+    const user = await Learnings.find({username:req.body.uname, ventureName: req.body.venName})
+    .then(async (data)=>{
+        
+        const tl = await Learnings.find({ventureName:req.body.venName, isPublic:true})
+        .then((dataa)=>{
+            res.send({status:'okay', learnings:data, topLearnings:dataa})
+            console.log("TOP LEARNINGS :  : "+data)
+        })
+        .catch((err)=>{
+            console.log('Error : '+err)
+        })
+    })
+    .catch((err)=>{
+        res.send({status:'db_err'})
+        console.log('Some error, like : '+err)
+    })
+
+    
+}
+
+
+async function toggleVisibility(req, res){
+    const ee = await Learnings.findOne({_id:req.body.id})
+    .then(async (data)=>{
+        // console.log(data)
+        const val = data['isPublic'];
+        const uu = await Learnings.updateOne({_id:req.body.id}, {$set:{isPublic:!val}})
+        .then((dataa)=>{
+            res.send({status:'okay'});
+        })
+        .catch((err)=>{
+            res.send({status:'err'})
+        })
+    })
+    .catch((err)=>{
+        console.log('Error : '+err)
+        res.send({status:'err'})
+    })
+}
+
+
+
+async function updateLearning(req, res){
+    // console.log('In update learning with ID : '+req.body.id+' and DESC : '+req.body.desc)
+    const uu = await Learnings.updateOne({_id:req.body.id}, {$set:{learningDesc:req.body.desc}})
+    .then((data)=>{
+        // console.log(data)
+        res.send({status:'updated'})
+    })
+    .catch((err)=>{
+        console.log('Error : '+err)
+        res.send({status:'not-updated'})
+    })
+}
+
+
+async function deleteLearning(req, res){
+    // console.log('In deleteLearning()')
+    const dd = Learnings.deleteOne({_id:req.body.id})
+    .then((data)=>{
+        // console.log(data)
+        res.send({status:'okay'})
+    })
+    .catch((err)=>{
+        console.log('Error : '+err)
+        res.send({status:'err'})
+    })
+}
+
+
+
+
+
+module.exports = {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility}

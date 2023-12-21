@@ -47,9 +47,9 @@ function Body(){
 
 
     const navv = useNavigate()
-    function nav(name){
+    function nav(uname, name){
         console.log('in nav')
-        navv('/venture/'+name)
+        navv('/'+uname+'/venture/'+name)
     }
 
 
@@ -71,7 +71,7 @@ function Body(){
                     <div className='ventures'>
                         { ventures.map((e)=>(
                               
-                                <div onClick={()=>{nav(user._id+'/'+e.ventureName)}} className='venture' key={e._id}>
+                                <div onClick={()=>{nav(user.name,e.ventureName)}} className='venture' key={e._id}>
                                     <div className='venName'> {e.ventureName} </div>
                                     <div className='venProg'> {e.learnCount} %  </div>
                                 </div>

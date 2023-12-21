@@ -15,11 +15,11 @@ function App() {
 
   return (
     <>
-    {/* <Header/> */}
+    {/* <Header/> */} 
     <BrowserRouter>
       <Routes>
       
-        <Route path='/venture/:id/:name' element={<VenturePage/>}/>
+        <Route path='/:uname/venture/:name' element={<VenturePage/>}/>
         <Route path='/newVenture/:id' element={<NewVenture/>} />
         <Route path='/addVenture/:name/:id' element={<AddForm/>} />
         <Route path='/profile' element={<Profile/>}/>  

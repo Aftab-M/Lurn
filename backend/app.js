@@ -8,7 +8,7 @@ const http = require('http').Server(app)
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData} = require('./builders/userController.js')
+const {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, toplearnings} = require('./builders/userController.js')
 
 
 mong.connect("mongodb+srv://useraf:af9999a@cluster0.awk4cby.mongodb.net/lurn?retryWrites=true&w=majority");
@@ -80,6 +80,19 @@ app.post('/addNewVenture', async(req, res)=>{addNewVenture(req, res)})
 app.post('/getHomeData', async(req, res)=>{getHomeData(req, res)})
 
 
+app.post('/addNewLearning', async(req, res)=>{addNewLearning(req, res)})
+
+
+app.post('/getLearnings', async(req, res)=>{getLearnings(req, res)})
+
+
+app.post('/toggleVisibility', async(req, res)=>{toggleVisibility(req, res)})
+
+
+app.post('/updateLearning', async(req, res)=>{updateLearning(req, res)})
+
+
+app.post('/deleteLearning', async(req, res)=>{deleteLearning(req, res)})
 
 
 
