@@ -255,15 +255,15 @@ async function getTopLearnings(req,res){
 
 
 async function getProfile(req, res){
-    console.log('Name : '+req.body.name)
+    // console.log('Name : '+req.body.name)
     const ss = User.findOne({name:req.body.name})
     .then((data)=>{
-        console.log('Data : '+data)
+        // console.log('Data : '+data)
         var cnt = 0;
         data.venturesList.map((e)=>{
             cnt+=e.learnCount;
         })
-        console.log(cnt);
+        // console.log(cnt);
         res.send({status:'okay', user:data, count:cnt})
     })
     .catch((err)=>{

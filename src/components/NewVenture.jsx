@@ -48,18 +48,18 @@ export default function NewVenture(){
                     (searchItem=='')?
                     topVentures.map((e)=>(
                         <>
-                            <div className="oneVen" onClick={()=>{nav('/venture/'+e.name)}}>
+                            <div className="oneVen" onClick={()=>{nav('/addVenture/'+e.name+'/'+id)}}>
                                  <div style={{fontSize:'1.3rem'}}>{e.name}</div>
-                                 <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div>
+                                 {/* <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div> */}
                              </div>
                         </>
                     ))
                     :
                     matchedItems.map((e)=>(
                         <>
-                            <div className="oneVen" onClick={()=>{nav('/venture/'+e.name)}}>
+                            <div className="oneVen" onClick={()=>{nav('/addVenture/'+e.name+'/'+id)}}>
                                  <div style={{fontSize:'1.3rem'}} >{e.name}</div>
-                                 <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div>
+                                 {/* <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div> */}
                              </div>
                         </>
                     ))
@@ -129,7 +129,7 @@ export default function NewVenture(){
                         
                     <div>No items related to your search</div>
                     <div className="add-new" style={{marginTop: '1rem'}}>
-                        <button onClick={()=>{addVen(props.searchItem); nav('/venture/'+props.searchItem)}}>
+                        <button onClick={()=>{addVen(props.searchItem); nav('/addVenture/'+props.searchItem+'/'+id)}}>
                             Add new venture - '{props.searchItem}'
                         </button>
                     </div>

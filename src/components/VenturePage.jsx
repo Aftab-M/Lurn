@@ -74,6 +74,7 @@ function VenturePage(){
                     if(res.data.status=='done'){
                         setDialogStatus(false);
                         alert('Added new learning !')
+                        location.reload();
                     }
                     else if(res.data.status=='db_err'){
                         alert('DB Error, Please try again in some time !!')
