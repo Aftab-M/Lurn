@@ -99,7 +99,23 @@ app.post('/deleteLearning', async(req, res)=>{deleteLearning(req, res)})
 app.post('/getTopVentures', async(req, res)=>{getTopLearnings(req, res)})
 
 
-app.post('/getProfile', async(req, res)=>{getProfile(req, res)})
+app.post('/getProfile', verifyToken, async(req, res)=>{getProfile(req, res)})
+
+
+function verifyToken(req, res, next){
+    console.log('IN THE MIDDLEWARE !!!')
+    const token = req.body.token;
+    console.log(token);
+    const vv = jwt.verify(token, 'random-key', (err, valid)=>{
+        if(err){console.log('ERROR !!!')}
+        else{
+            console.log('VALID HOMIE, LETS GOOO')
+            next();
+            
+        }
+    })
+    // next();
+}
 
 
 app.post('/register', async (req, res)=>{

@@ -75,7 +75,6 @@ function Body(){
                                     <div className='venName'> {e.ventureName} </div>
                                     <div className='venProg'> {e.learnCount} %  </div>
                                 </div>
-
                         )) }
                     </div>
                         

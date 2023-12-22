@@ -12,7 +12,7 @@ export default function Profile(){
     const [user, setUser] = useState({name:'', email:'', pubCont: 0, venturesList:[{ventureName:'',  learnCount:0}]});
     let ls = 0;
     useEffect(()=>{
-        axios.post('http://localhost:3000/getProfile', {name:uname})
+        axios.post('http://localhost:3000/getProfile', {name:uname, token: localStorage.getItem('token')})
         .then((res)=>{
             setUser(res.data.user);
             user.venturesList.sort((a, b)=> b.learnCount - a.learnCount);
