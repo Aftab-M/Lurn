@@ -131,28 +131,11 @@ app.post('/register', async (req, res)=>{
     else{ console.log('Not found, lets continue with Registration !!') }
 
     
-    
-    // console.log(usr)
-
-    // bcrypt.hash(req.body.pass, 10)
-    // .catch((err)=>{
-    //     res.status(500).send({message:'Password not hashed properly !', err})
-    // })
-    // .then((e)=>{
-    //     const us = new User({
-    //         email: req.body.email,
-    //         password: e
-    //     });
-    //     us.save().then((e)=>{console.log("SUCC : "+e)}).catch((err)=>{console.log("ERR : "+err)})
-
-    // })
 })
 
 
 
 
-
-// insertUser();
 
 
 
