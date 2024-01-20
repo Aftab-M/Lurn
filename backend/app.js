@@ -12,7 +12,7 @@ const Venture = require('./models/ventureModel.js')
 const {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, toplearnings, getTopLearnings, getProfile} = require('./builders/userController.js')
 
 
-mong.connect("mongodb+srv://useraf:af9999a@cluster0.awk4cby.mongodb.net/lurn?retryWrites=true&w=majority");
+mong.connect("mongodb+srv://uname:passcluster0.awk4cby.mongodb.net/lurn?retryWrites=true&w=majority");
 app.use(cors({origin:'*', methods:['POST', 'GET'], credentials:true}))
 app.use(express.json())
 
