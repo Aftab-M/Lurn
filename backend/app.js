@@ -19,14 +19,6 @@ app.use(express.json())
 
 const User = require('./models/userModel')
 
-async function insertUser(){
-    await User.create({
-        email: 'vossi@gmail.com',
-        name: 'Stormzy',
-        password: 'chuck norris',
-        venturesList: [{'Spanish':10}, {'Machine Learning':7}]
-    }).then((e)=>{console.log('Inserted a record !')});
-}
 
 
 
