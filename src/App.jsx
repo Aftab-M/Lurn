@@ -25,7 +25,7 @@ function App() {
         <Route path='/:uname/profile' element={<Profile/>}/>  
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/home/:id' element={<Body/>} />
-        <Route path='/' element={<LandingPage/>} />
+        <Route path='/' element={<LoginPage/>} />
       </Routes>
     </BrowserRouter>
       {/* <div className='mainClass'>
