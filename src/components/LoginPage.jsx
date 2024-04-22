@@ -53,8 +53,8 @@ export default function(){
         const [uname, setUname] = useState('')
         const [pass, setPass] = useState('');
         const [confirmPass, setConfirm] = useState('');
-        const [emailAvailable, setEmailAvailable] = useState(false);
-        const [UnameAvailable, setUnameAvailable] = useState(false);
+        const [emailAvailable, setEmailAvailable] = useState('');
+        const [UnameAvailable, setUnameAvailable] = useState('');
 
         function regLogic(e){
             
@@ -64,8 +64,8 @@ export default function(){
             if(uname==''){alert('Cannot leave username empty !'); allGood = false;}
             if(pass==''){alert('Please fill both passwords !'); allGood = false;}
             if(confirmPass==''){alert('Please fill both passwords !'); allGood = false;}
-            if(emailAvailable == false){alert('Please select a valid email !'); allGood = false;}
-            if(UnameAvailable == false){alert('Please select a valid username !'); allGood = false;}
+            // if(emailAvailable == ''){alert('Please select a valid email !'); allGood = false;}
+            // if(UnameAvailable == ''){alert('Please select a valid username !'); allGood = false;}
 
             if(allGood){
                 console.log('IN REGISTER LOGIC')

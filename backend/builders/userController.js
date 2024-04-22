@@ -108,7 +108,7 @@ async function registerUser(req, res){
     .then((data)=>{
         // console.log(data);
         // bcrypt.compare(req.body.password, data).then((result)=>console.log(result)).catch((err)=>console.log(err))
-        const newUser = User.insertMany({email:req.body.email, password:req.body.password, name: req.body.uname, pubCont:0, venturesList:[{ventureName:'', learnCount:0}]})
+        const newUser = User.insertMany({email:req.body.email, password:req.body.password, name: req.body.uname, pubCont:0, venturesList:[{ventureName:'LURN Platform', learnCount:0}]})
         .then((ee)=>{
             // console.log('User Created !')
             res.send({status:'registered'})

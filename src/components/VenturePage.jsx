@@ -229,6 +229,24 @@ function VenturePage(){
         </div>
 
         
+        <div className="get-ai-help">
+                Get AI Help 
+                <div style={{
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    display: 'flex', 
+
+                }}>
+                    <div>
+                        <input style={{
+                            width: '50vw'
+                        }} type="text" />
+                    </div>
+                    <div><button>Get Response</button></div>
+                </div>
+        </div>
+        
+        
         <div className='learning-list'>
         <div style={{'fontSize':'1.3rem'}}>Things You've learnt so far...</div>
             {
