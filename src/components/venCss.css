@@ -289,8 +289,12 @@ textarea:disabled{
 
 
 .get-ai-help{
-    background-color: white;
+    /* background-color: black; */
     padding: 1rem;
     border-radius: 10px;
-    /* border: 1px solid black; */
+    width: 80vw;
+    margin-left: 8rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border: 1px solid black;
 }

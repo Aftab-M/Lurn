@@ -13,8 +13,17 @@ function VenturePage(){
     const [clickedItem, setClickedItem] = useState();
     const [list, setList] = useState([]);
     const [topLearnings, setTopLearnings] = useState([]);
+    const [prompt, setPrompt] = useState('')
+    const [aiResponse, setAiResponse] = useState('')
 
     
+    async function getAIHelp(){
+        axios.post('http://localhost:3000/getai', {prompt:prompt}).then((res)=>{
+            console.log(res.data);
+            setAiResponse(res.data);
+            setPrompt('')
+        });
+    }
 
 
     // const list = [
@@ -235,14 +244,18 @@ function VenturePage(){
                     alignItems: 'center', 
                     justifyContent: 'center',
                     display: 'flex', 
+                    flexDirection: 'column'
 
                 }}>
                     <div>
-                        <input style={{
+                        <input value={prompt} placeholder='Enter a question' onChange={(e)=>{setPrompt(e.target.value)}} style={{
                             width: '50vw'
                         }} type="text" />
                     </div>
-                    <div><button>Get Response</button></div>
+                    <div><button onClick={()=>{getAIHelp()}}>Get Response</button></div>
+                    <div style={{margin: '1.5rem'}}>
+                        {(aiResponse=='')?'Enter a question and hit "Get Response"':aiResponse}
+                    </div>
                 </div>
         </div>
         
