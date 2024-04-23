@@ -73,7 +73,7 @@ function Body(){
                               
                                 <div onClick={()=>{nav(user.name,e.ventureName)}} className='venture' key={e._id}>
                                     <div className='venName'> {e.ventureName} </div>
-                                    <div className='venProg'> {e.learnCount} %  </div>
+                                    <div className='venProg'> {e.learnCount} done  </div>
                                 </div>
                         )) }
                     </div>

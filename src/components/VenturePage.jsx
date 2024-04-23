@@ -25,6 +25,28 @@ function VenturePage(){
         });
     }
 
+    function addAILearning(){
+            
+            
+        console.log('Adding the AI learning...')
+        axios.post('http://localhost:3000/addNewLearning', {vName:name, username:uname, title:prompt, desc:aiResponse})
+        .then((res)=>{
+            console.log(res.data.status);
+            if(res.data.status=='done'){
+                setDialogStatus(false);
+                alert('Added new learning !')
+                location.reload();
+            }
+            else if(res.data.status=='db_err'){
+                alert('DB Error, Please try again in some time !!')
+            }
+        })
+        .catch((err)=>{
+            console.log('Error : '+err)
+        })
+    
+}
+
 
     // const list = [
     //     {name:'Cole', desc: 'The Passport Bros', public: true},
@@ -77,7 +99,7 @@ function VenturePage(){
             }   // if
             else{
                 console.log('Adding the learning...')
-                axios.post('http://localhost:3000/addNewLearning', {vName:name, username:uname, title:title, desc:desc})
+                axios.post('http://localhost:3000/addNewLearning', {vName:name, username:uname, title:prompt, desc:aiResponse})
                 .then((res)=>{
                     console.log(res.data.status);
                     if(res.data.status=='done'){
@@ -96,6 +118,7 @@ function VenturePage(){
             
         }
 
+        
 
 
         return(
@@ -144,6 +167,8 @@ function VenturePage(){
 
         }
 
+
+        
 
 
         return(
@@ -253,8 +278,9 @@ function VenturePage(){
                         }} type="text" />
                     </div>
                     <div><button onClick={()=>{getAIHelp()}}>Get Response</button></div>
-                    <div style={{margin: '1.5rem'}}>
+                    <div style={{margin: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         {(aiResponse=='')?'Enter a question and hit "Get Response"':aiResponse}
+                        {(aiResponse=='')?<></>:<button onClick={()=>{addAILearning()}} style={{marginTop: '2rem'}}>Add This Learning</button>}
                     </div>
                 </div>
         </div>
@@ -286,7 +312,7 @@ function VenturePage(){
                     {
                         topLearnings.map((e)=>(
                                 <div  key={e._id} className="topOne">
-                                    <div style={{fontSize: '1.5rem'}}>{e.learningTitle}</div>
+                                    <div style={{fontSize: '1.5rem', cursor: 'pointer'}}>{e.learningTitle}</div>
                                     <div style={{fontSize:'.8rem', paddingTop:'.3rem'}}> {e.learningDesc} </div>
                                 </div>
                         ))

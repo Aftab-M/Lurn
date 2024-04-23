@@ -29,7 +29,7 @@ function Header(props){
     <>
         
             <div className='header'>
-                <div onClick={()=>{nav(-1)}}>LURN</div>
+                <div onClick={()=>{nav(-1)}} style={{cursor: 'pointer'}}>LURN</div>
                 {
                 
                     <div>
