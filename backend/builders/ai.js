@@ -1,5 +1,5 @@
 const {GoogleGenerativeAI, GenerativeModel} = require("@google/generative-ai")
-const genAI = new GoogleGenerativeAI('AIzaSyA4yVrlA6QZDcmDiSOjpiidqDNTrW_Y6ps');
+const genAI = new GoogleGenerativeAI(API_KEY);
 
 async function getHelp(req, res){
     
