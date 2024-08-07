@@ -12,8 +12,8 @@ const Venture = require('./models/ventureModel.js')
 const {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, toplearnings, getTopLearnings, getProfile} = require('./builders/userController.js')
 const {getHelp} = require('./builders/ai.js')
 
-mong.connect("mongodb+srv://useraf:passnew@cluster0.awk4cby.mongodb.net/lurn?retryWrites=true&w=majority&appName=Cluster0");
-// mong.connect("mongodb://useraf:passnew@ac-5dghakg-shard-00-00.awk4cby.mongodb.net:27017,ac-5dghakg-shard-00-01.awk4cby.mongodb.net:27017,ac-5dghakg-shard-00-02.awk4cby.mongodb.net:27017/?ssl=true&replicaSet=atlas-a38ok0-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0")
+mong.connect(CONN_STRING);
+
 app.use(cors({origin:'*', methods:['POST', 'GET'], credentials:true}))
 app.use(express.json())
 
