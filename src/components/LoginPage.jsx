@@ -57,15 +57,11 @@ export default function(){
         const [UnameAvailable, setUnameAvailable] = useState('');
 
         function regLogic(e){
-            
-            // toast.error('Registered Homie', {autoClose:true, hideProgressBar:false, position:toast.POSITION.TOP_RIGHT})
             var allGood = true;
             if(email==''){alert('Cannot leave email empty !'); allGood = false;}
             if(uname==''){alert('Cannot leave username empty !'); allGood = false;}
             if(pass==''){alert('Please fill both passwords !'); allGood = false;}
             if(confirmPass==''){alert('Please fill both passwords !'); allGood = false;}
-            // if(emailAvailable == ''){alert('Please select a valid email !'); allGood = false;}
-            // if(UnameAvailable == ''){alert('Please select a valid username !'); allGood = false;}
 
             if(allGood){
                 console.log('IN REGISTER LOGIC')
@@ -81,7 +77,6 @@ export default function(){
 
         function checkAndSetUname(e){
             if(e.target.value!==''){
-            // console.log('check if username exists'+(urlPrefix+'/checkUsername/'+e.target.value))
             axios.post(urlPrefix+'/checkUsername/'+e.target.value)
             .then((res)=>{
                 if(res.data.exists=='yes'){
@@ -102,7 +97,6 @@ export default function(){
 
         function checkAndSetEmail(e){
             if(e.target.value!==''){
-            // console.log('check if username exists')
             axios.post(urlPrefix+'/checkEmail/'+e.target.value)
             .then((res)=>{
                 if(res.data.exists=='yes'){
@@ -174,22 +168,7 @@ export default function(){
                 :
                 <Register/>
             }
-
-
-
-
-            {/* <div className='regMain'>
-            
-            <div className='inputs'>
-            <label style={{'fontSize':'1.2rem', 'color':'black', 'padding':'1rem'}}>LOGIN</label>
-                <input type='text' placeholder='Email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                <input type='text' placeholder='Password' value={pass} onChange={(e)=>setPass(e.target.value)} />
-                <button onClick={()=>{onLogin({email, pass})}} className='btn'> LOGIN </button>
-            </div>
-        </div> */}
-
-            {/* <button onClick={(e)=>{handleSubmit(e.target.value)}}>Login</button> */}
-            
+   
         </>
     );
 }
