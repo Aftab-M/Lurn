@@ -19,15 +19,12 @@ function Body(){
 
 
     useEffect((()=>{        
-        // console.log('-------------------> ID IS : '+id)
         axios.post('http://localhost:3000/getUser/'+id)
         .then((res)=>{
-            // console.log('RETURNED DATA IS : '+res.data.user)
             setUser(res.data.user);
 
             axios.post('http://localhost:3000/getHomeData', {name:res.data.user.name})
             .then((result)=>{
-                // console.log("Ventures are : "+result.data.ventures);
                 setVentures(result.data.ventures);
             })
             .catch((err)=>{
