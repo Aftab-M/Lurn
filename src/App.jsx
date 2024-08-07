@@ -15,10 +15,9 @@ function App() {
 
   return (
     <>
-    {/* <Header/> */} 
+      
     <BrowserRouter>
       <Routes>
-      
         <Route path='/:uname/venture/:name' element={<VenturePage/>}/>
         <Route path='/newVenture/:id' element={<NewVenture/>} />
         <Route path='/addVenture/:name/:id' element={<AddForm/>} />
@@ -28,11 +27,7 @@ function App() {
         <Route path='/' element={<LoginPage/>} />
       </Routes>
     </BrowserRouter>
-      {/* <div className='mainClass'>
-        <Header/>
-        <Body/>
-      </div>
-       */}
+      
     </>
   )
 }
