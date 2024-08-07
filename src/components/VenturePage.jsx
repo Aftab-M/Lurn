@@ -48,32 +48,16 @@ function VenturePage(){
 }
 
 
-    // const list = [
-    //     {name:'Cole', desc: 'The Passport Bros', public: true},
-    //     {name:'Bassi', desc: 'The Passport Bros', public: true},
-    //     {name:'Kendrick', desc: 'Kung Fu Kenny', public: false},
-    //     {name:'Cole', desc: 'The Passport Bros', public: true},
-    //     {name:'Bassi', desc: 'The Passport Bros', public: false},
-    //     {name:'Kendrick', desc: 'Kung Fu Kenny', public: false}
-    // ];
-
-    // const topLearnings = [
-    //     {name:'ABC', desc:'NOTA'},
-    //     {name:'ABC', desc:'NOTA'},
-    //     {name:'ABC', desc:'NOTA'},
-    //     {name:'ABC', desc:'NOTA'}
-    // ];
 
 
     useEffect(()=>{
         axios.post('http://localhost:3000/getLearnings', {uname:uname, venName:name})  
         .then((res)=>{
             if(res.data.status=='okay'){
-                // console.log('Result got is : '+res.data.learnings)
+               
                 setList(res.data.learnings)
                 setTopLearnings(res.data.topLearnings)
-                // const tempTop = res.data.topLearnings;
-                // console.log(tempTop)
+              
             }
             else if(res.data.status=='db_err'){
                 console.log('Error fetching the data !')
@@ -148,13 +132,9 @@ function VenturePage(){
         const nav = useNavigate()
         const forceUpdate = useForceUpdate()
         const updateLogic = () => {
-            // alert('Updated, maybe !');
-            // console.log('In update of description...')
             axios.post('http://localhost:3000/updateLearning', {id:props.item._id, desc: dd})
             .then((res)=>{
                 if(res.data.status=='updated'){
-                    // alert('Updated !')
-                    // console.log(res.data.status)
                     setDescriptionStatus(false);
                     location.reload();
                     
@@ -197,7 +177,6 @@ function VenturePage(){
         setDescriptionStatus(false);
         axios.post('http://localhost:3000/deleteLearning', {id:e._id})
         .then((res)=>{
-            // console.log(res.data.status);
             if(res.data.status=='okay'){
                 alert('Learning Deleted !')
                 location.reload();
@@ -235,9 +214,7 @@ function VenturePage(){
             (isInputDialogOpen)
             ?
             <center>
-                {/* <div className=''> */}
                 <Dialog />
-            {/* </div> */}
             </center>
             
             :
