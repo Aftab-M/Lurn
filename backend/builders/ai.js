@@ -3,7 +3,7 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 async function getHelp(req, res){
     
-    console.log('IN GETHELP-------------')
+    
     var prompt = "Answer in 40 words, the question : "+req.body.prompt;
 
     console.log(prompt);
@@ -12,7 +12,7 @@ async function getHelp(req, res){
     const result = await model.generateContent(prompt);
     const resp = await result.response;
     res.send(resp.text());
-    console.log('Resp generated------------------------------')
+    console.log('Response generated')
     console.log(resp.text());
     
 }
