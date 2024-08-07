@@ -6,14 +6,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export default function TopVentures(props){
-    // const topVentures = [
-    //     {name: 'Machine Learning', 'count':20},
-    //     {name: 'Spanish', 'count':10},
-    //     {name: 'Competitive Programming', 'count':12},
-    //     {name: 'Hydraulics', 'count':32},
-    //     {name: 'Music Composition', 'count':39},
-    //     {name: 'JavaScript', 'count':27},
-    // ];
+   
 
     const [topVentures, setTopVentures] = useState([]);
 
