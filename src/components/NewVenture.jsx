@@ -62,39 +62,8 @@ export default function NewVenture(){
                                  {/* <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div> */}
                              </div>
                         </>
-                    ))
-                    // (searchItem=='')
-                    // ?
-                    
-                    // topVentures.map((e)=>(
-                    //     <>
-                    //         <div className="oneVen">
-                    //             <div style={{fontSize:'1.3rem'}}>{e.name}</div>
-                    //             <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div>
-                    //         </div>
-                            
-                    //     </>
-                    // ))
-                    // :
-                    // topVentures.map((e)=>(
-                    //     <>
-                    //         {
-                    //         (e.name.includes(searchItem))
-                    //         ?
-                    //             <div className="oneVen">
-                    //             <div style={{fontSize:'1.3rem'}}>{e.name}</div>
-                    //             <div style={{fontSize:'1rem', paddingTop:'.5rem'}}>{e.count} people</div>
-                    //             </div>
-                    //         :
-                    //             // setIsEmpty(true)
-                    //             <> {()=>{setIsEmpty(true); console.log(isEmpty)}} </>
-                    //         }
-                            
-                    //     </>
-                    // ))
-                    
+                    ))  
                 }
-                
             </div>
             {
                 (matchedItems.length==0)
@@ -111,7 +80,6 @@ export default function NewVenture(){
 
     function NoItems(props){
         function addVen(){
-            // alert('Adding new venture '+props.searchItem)
             axios.post('http://localhost:3000/addNewVenture', {id:id, name:props.searchItem})
             .then((res)=>{
                 console.log(res.data);
