@@ -93,11 +93,8 @@ async function registerUser(req, res){
     // console.log('In Register User !')
     const hashedPassword = bcrypt.hash(req.body.password, 10)
     .then((data)=>{
-        // console.log(data);
-        // bcrypt.compare(req.body.password, data).then((result)=>console.log(result)).catch((err)=>console.log(err))
         const newUser = User.insertMany({email:req.body.email, password:req.body.password, name: req.body.uname, pubCont:0, venturesList:[{ventureName:'LURN Platform', learnCount:0}]})
         .then((ee)=>{
-            // console.log('User Created !')
             res.send({status:'registered'})
         })
         .catch((err)=>{
@@ -112,10 +109,8 @@ async function registerUser(req, res){
 
 
 async function addNewVenture(req, res){
-    // console.log("ID IS : "+req.params.id+", and name is : "+req.params.id)
     await User.updateOne({_id:req.body.id}, {$push:{venturesList: {ventureName:req.body.name, learnCount:0}}})
     .then(async(data)=>{
-        // console.log('GOT THE DATA : '+data)
         res.send({status:'done'})
         const u = await Ventures.updateOne({venName:req.body.name}, {$inc:{venPeopleCount:1}})
     })
@@ -127,10 +122,8 @@ async function addNewVenture(req, res){
 
 
 async function getHomeData(req, res){
-    // console.log(req.body.name)
     const user = await User.findOne({name:req.body.name})
     .then((data)=>{
-        // console.log('Data : '+data.venturesList)
         res.send({ventures:data.venturesList})
     })
     .catch((err)=>{
@@ -141,11 +134,8 @@ async function getHomeData(req, res){
 
 
 async function addNewLearning(req, res){
-    // console.log('In addNewLearning')
-
     const learning = await Learnings.create({ventureName:req.body.vName, username:req.body.username, learningTitle:req.body.title, learningDesc:req.body.desc, isPublic:false})
     .then(async(data)=>{
-        // console.log(data)
         res.send({status:'done'})
         const up = await User.updateOne({name:req.body.username, 'venturesList.ventureName':req.body.vName}, {
             $inc:{'venturesList.$.learnCount':1}
@@ -165,7 +155,6 @@ async function getLearnings(req, res){
         const tl = await Learnings.find({ventureName:req.body.venName, isPublic:true})
         .then((dataa)=>{
             res.send({status:'okay', learnings:data, topLearnings:dataa})
-            // console.log("TOP LEARNINGS :  : "+data)
         })
         .catch((err)=>{
             console.log('Error : '+err)
@@ -203,7 +192,6 @@ async function toggleVisibility(req, res){
 
 
 async function updateLearning(req, res){
-    // console.log('In update learning with ID : '+req.body.id+' and DESC : '+req.body.desc)
     const uu = await Learnings.updateOne({_id:req.body.id}, {$set:{learningDesc:req.body.desc}})
     .then((data)=>{
         // console.log(data)
@@ -217,10 +205,8 @@ async function updateLearning(req, res){
 
 
 async function deleteLearning(req, res){
-    // console.log('In deleteLearning()')
     const dd = Learnings.deleteOne({_id:req.body.id})
     .then((data)=>{
-        // console.log(data)
         res.send({status:'okay'})
     })
     .catch((err)=>{
@@ -231,9 +217,7 @@ async function deleteLearning(req, res){
 
 
 async function getTopLearnings(req,res){
-    // console.log('In getTopLearnings !!')
     const ss = await Ventures.find({})
-    // console.log('VENTURES ARE : '+ss);
     if(!ss){res.send({status:'err'})}
     else{
         res.send({status:'okay', tv:ss})
@@ -242,15 +226,12 @@ async function getTopLearnings(req,res){
 
 
 async function getProfile(req, res){
-    // console.log('Name : '+req.body.name)
     const ss = User.findOne({name:req.body.name})
     .then((data)=>{
-        // console.log('Data : '+data)
         var cnt = 0;
         data.venturesList.map((e)=>{
             cnt+=e.learnCount;
         })
-        // console.log(cnt);
         res.send({status:'okay', user:data, count:cnt})
     })
     .catch((err)=>{
