@@ -53,14 +53,6 @@ async function getUser(req, res){
         })
         .catch((err)=>{console.log('NODE ERROR : '+err)})
         
-
-        // console.log('ABC IS : '+abc)
-        // if(!user){console.log('NOT USER' + user)}
-        // else{
-        //     console.log(user)
-        //     res.send({user:user})
-        // }
-        
     }catch(err){console.log('CAUGHT : '+err)}
 
 }
@@ -74,11 +66,9 @@ async function checkIfUserExists(req, res){
     const uu = await User.findOne({name:uname})
 
     if(!uu){
-        // console.log('User does not exist !')
         res.send({exists:'no'})
     }
     else{
-        // console.log('Username already exists !!')
         res.send({exists:'yes'})
     }
 }
@@ -88,15 +78,12 @@ async function checkIfUserExists(req, res){
 
 async function checkIfEmailExists(req, res){
     const email = req.params.email;
-    // console.log('Email is : '+email)
     const uu = await User.findOne({email:email})
 
     if(!uu){
-        // console.log('Email does not exist !')
         res.send({exists:'no'})
     }
     else{
-        // console.log('Email already exists !!')
         res.send({exists:'yes'})
     }
 }
