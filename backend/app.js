@@ -12,7 +12,7 @@ const Venture = require('./models/ventureModel.js')
 const {userLogin, getUser, checkIfUserExists, checkIfEmailExists, registerUser, addNewVenture, getHomeData, addNewLearning, getLearnings, updateLearning, deleteLearning, toggleVisibility, toplearnings, getTopLearnings, getProfile} = require('./builders/userController.js')
 const {getHelp} = require('./builders/ai.js')
 
-mong.connect(CONN_STRING);
+mong.connect(process.env.CONN_STRING);
 
 app.use(cors({origin:'*', methods:['POST', 'GET'], credentials:true}))
 app.use(express.json())
@@ -105,7 +105,7 @@ function verifyToken(req, res, next){
     const vv = jwt.verify(token, 'random-key', (err, valid)=>{
         if(err){console.log('ERROR !!!')}
         else{
-            console.log('VALID HOMIE, LETS GOOO')
+            console.log('VALID')
             next();
             
         }
@@ -120,7 +120,6 @@ app.post('/register', async (req, res)=>{
     const uss = await User.findOne({'email':req.body.email})
     
     if(uss){
-        console.log("User Already Exists !!!!"+uss['_id']);
         sendUser(uss['email']);
         
     }
