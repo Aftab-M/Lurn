@@ -1,4 +1,3 @@
-// import { createRequire } from 'module'
 // const require = createRequire(import.meta.url);
 const app = require('express')()
 const cors = require('cors')
