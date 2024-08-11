@@ -22,7 +22,7 @@ async function userLogin(req, res){
         else{
 
             jwt.sign({ user }, 'random-key', {expiresIn:'1hr'}, (err, token)=>{
-                if(err){ console.log("EROROROR ! "+err) }
+                if(err){ console.log("ERROR ! "+err) }
                 else{
                     console.log('IN ELSE')
                     // console.log('After store statement')
